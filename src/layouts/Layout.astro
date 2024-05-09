@@ -1,0 +1,26 @@
+---
+import { fade } from "astro:transitions";
+import Head from "@/layouts/Head.astro";
+import Header from "@/layouts/Header.astro";
+import Aside from "@/layouts/Aside.astro";
+
+export interface Props {
+  title: string;
+  color?: string;
+}
+
+const { title, color = "" } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <Head title={title} />
+  </head>
+  <body data-color={color}>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Aside />
+  </body>
+</html>

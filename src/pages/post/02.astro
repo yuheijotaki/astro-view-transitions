@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Post 02" color="cornflowerblue">
+  <img
+    src="https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=1200"
+    alt=""
+    transition:name="post-image-02"
+  />
+  <div transition:animate="fade">
+    <h2>Post 02</h2>
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    </p>
+    <p><a href="/">Back</a></p>
+  </div>
+</Layout>
+
+<style>
+  img {
+    max-width: 800px;
+  }
+</style>

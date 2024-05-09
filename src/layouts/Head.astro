@@ -1,0 +1,91 @@
+---
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<meta charset="utf-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="viewport" content="width=device-width" />
+<title>{title}</title>
+<ViewTransitions />
+
+<script>
+  document.addEventListener(
+    "astro:page-load",
+    () => {
+      // これは1度だけ実行されます。
+      console.log("🚀 astro:page-load");
+    },
+    { once: true }
+  );
+
+  document.addEventListener("astro:after-swap", () => {
+    console.log("🚀 astro:after-swap");
+  });
+</script>
+
+<style is:global>
+  :root {
+    --color-mode: light;
+    --color-primary: #ddd;
+    --color-secondary: #222;
+  }
+
+  :root[style*="--color-mode: dark"] {
+    --color-primary: #222;
+    --color-secondary: #ddd;
+  }
+
+  body {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+  }
+
+  a {
+    color: var(--color-secondary);
+  }
+
+  h1 {
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+    }
+    .circle {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: tomato;
+      border-radius: 9999rem;
+      transition: background-color 1s;
+
+      [data-color="lime"] & {
+        background-color: lime;
+      }
+      [data-color="cornflowerblue"] & {
+        background-color: cornflowerblue;
+      }
+      [data-color="plum"] & {
+        background-color: plum;
+      }
+    }
+  }
+
+  ::view-transition-group(header),
+  ::view-transition-group(aside) {
+    z-index: 10;
+  }
+
+  ::view-transition-old(header),
+  ::view-transition-new(header),
+  ::view-transition-old(aside),
+  ::view-transition-new(aside) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+</style>

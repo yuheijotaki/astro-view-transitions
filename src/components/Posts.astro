@@ -1,0 +1,64 @@
+<ul>
+  <li>
+    <a href={`/post/01/`}>
+      <img
+        src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?q=80&w=1200"
+        alt=""
+        transition:name="post-image-01"
+      />
+      <h2>Post 01</h2>
+    </a>
+  </li>
+  <li>
+    <a href={`/post/02/`}>
+      <img
+        src="https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=1200"
+        alt=""
+        transition:name="post-image-02"
+      />
+      <h2>Post 02</h2>
+    </a>
+  </li>
+  <li>
+    <a href={`/post/03/`}>
+      <img
+        src="https://images.unsplash.com/photo-1714891203404-b25f32706e0a?q=80&w=1200"
+        alt=""
+        transition:name="post-image-03"
+      />
+      <h2>Post 03</h2>
+    </a>
+  </li>
+</ul>
+
+<style>
+  ul {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 200px;
+    list-style-type: none;
+  }
+
+  li {
+    margin: 2rem 0 0;
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      font-size: 0;
+    }
+
+    h2 {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+</style>

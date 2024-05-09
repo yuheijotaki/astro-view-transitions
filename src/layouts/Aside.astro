@@ -1,0 +1,16 @@
+---
+import TransitionPersist from "@/components/TransitionPersist.astro";
+import TransitionName from "@/components/TransitionName.astro";
+---
+
+<aside transition:name="aside">
+  <TransitionPersist />
+  <TransitionName />
+</aside>
+
+<style>
+  aside {
+    margin-top: 4rem;
+    background-color: gray;
+  }
+</style>

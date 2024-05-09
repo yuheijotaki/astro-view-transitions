@@ -1,0 +1,75 @@
+---
+
+---
+
+<header transition:name="header" transition:persist>
+  <h1>
+    <a href="/">
+      <span class="circle"></span>
+      <span>astro-view-transitions</span>
+    </a>
+  </h1>
+  <button type="button" data-toggle-theme>ダークモードに切り替える</button>
+</header>
+
+<script>
+  function setRootColorMode(mode: string) {
+    const root = document.querySelector(":root") as HTMLElement;
+    root?.style.setProperty("--color-mode", mode);
+  }
+
+  function updateToggleButton(mode: string) {
+    const button = document.querySelector(
+      "[data-toggle-theme]"
+    ) as HTMLButtonElement;
+    button.innerHTML =
+      mode === "dark" ? "ライトモードに切り替える" : "ダークモードに切り替える";
+  }
+
+  function setColorMode(mode: string) {
+    setRootColorMode(mode);
+    updateToggleButton(mode);
+  }
+
+  function getColorMode(): string {
+    const storedMode = localStorage.getItem("color-mode");
+    if (storedMode) {
+      return storedMode;
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  }
+
+  function toggleColorMode() {
+    const toggleButton = document.querySelector(
+      "[data-toggle-theme]"
+    ) as HTMLButtonElement;
+    toggleButton?.addEventListener("click", (event) => {
+      event.preventDefault();
+      const currentMode = getColorMode();
+      const newMode = currentMode === "dark" ? "light" : "dark";
+      localStorage.setItem("color-mode", newMode);
+      setColorMode(newMode);
+    });
+  }
+
+  function initColorMode() {
+    const initialColorMode = getColorMode();
+    setColorMode(initialColorMode);
+    toggleColorMode();
+  }
+
+  initColorMode();
+  document.addEventListener("astro:after-swap", () => {
+    const initialColorMode = getColorMode();
+    setColorMode(initialColorMode);
+    toggleColorMode();
+  });
+</script>
+
+<style>
+  header {
+    margin-bottom: 2rem;
+  }
+</style>
