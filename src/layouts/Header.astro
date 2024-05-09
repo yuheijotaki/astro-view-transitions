@@ -61,10 +61,11 @@
   }
 
   initColorMode();
+
   document.addEventListener("astro:after-swap", () => {
     const initialColorMode = getColorMode();
     setColorMode(initialColorMode);
-    toggleColorMode();
+    // toggleColorMode();
   });
 </script>
 
